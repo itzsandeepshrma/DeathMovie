@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Death Movies 🎬</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      background: #0d0d0d;
+      color: white;
+      overflow-x: hidden;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: linear-gradient(90deg, #111, #000);
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+    }
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: crimson;
+      text-shadow: 0 0 10px red;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: crimson;
+    }
+    .hero {
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+      background: linear-gradient(to bottom, #0d0d0d, #111);
+    }
+    .hero h1 {
+      font-size: 3rem;
+      color: crimson;
+      text-shadow: 0 0 10px red;
+      margin-bottom: 1rem;
+    }
+    .movie-section {
+      margin: 2rem;
+    }
+    .movie-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: crimson;
+    }
+    .movie-row {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      scroll-snap-type: x mandatory;
+    }
+    .movie-card {
+      flex: 0 0 auto;
+      width: 150px;
+      scroll-snap-align: start;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .movie-card:hover {
+      transform: scale(1.05);
+    }
+    .movie-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      display: none;
+    }
+    .popup-content {
+      background: #111;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 100%;
+    }
+    .popup iframe {
+      width: 100%;
+      height: 315px;
+    }
+    .close-btn {
+      float: right;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: crimson;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">DeathMovie</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#trending">Trending</a>
+      <a href="#recommend">Recommended</a>
+      <a href="#footer">About</a>
+    </nav>
+  </header>  <section class="hero" id="home">
+    <h1>Welcome to DeathMovie 🎥</h1>
+    <p>Watch trending, anime, and action movies with trailers and ratings.</p>
+  </section>  <section class="movie-section" id="trending">
+    <h2>🔥 Trending Now</h2>
+    <div class="movie-row" id="trending-movies"></div>
+  </section>  <section class="movie-section" id="recommend">
+    <h2>🎯 Recommended For You</h2>
+    <div class="movie-row" id="recommended-movies"></div>
+  </section>  <div class="popup" id="popup">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <iframe id="popup-trailer" src="" frameborder="0" allowfullscreen></iframe>
+      <h3 id="popup-title"></h3>
+      <p id="popup-desc"></p>
+    </div>
+  </div>  <footer class="footer" id="footer">
+    <p>© 2025 DeathMovie. All rights reserved.</p>
+  </footer>  <script>
+    const moviesTrending = [
+      {
+        title: "John Wick: Chapter 4",
+        image: "https://image.tmdb.org/t/p/w500/gh2bmprLtUQ8oXCSluzfqaicyrm.jpg",
+        trailer: "https://www.youtube.com/embed/qEVUtrk8_B4",
+        desc: "John Wick takes on the High Table across the globe."
+      },
+      {
+        title: "The Super Mario Bros. Movie",
+        image: "https://image.tmdb.org/t/p/w500/xGuOF1T3WmPsAcQEQJfnG7Ud9f8.jpg",
+        trailer: "https://www.youtube.com/embed/TnGl01FkMMo",
+        desc: "Mario and Luigi go on a magical mission to save the world."
+      }
+    ];
+
+    const moviesRecommended = [
+      {
+        title: "Spider-Man: No Way Home",
+        image: "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+        trailer: "https://www.youtube.com/embed/JfVOs4VSpmA",
+        desc: "Peter Parker faces multiversal threats with help from old friends."
+      },
+      {
+        title: "Demon Slayer: Mugen Train",
+        image: "https://image.tmdb.org/t/p/w500/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg",
+        trailer: "https://www.youtube.com/embed/ATJYac_dORw",
+        desc: "Tanjiro joins the Flame Hashira on a train mission."
+      }
+    ];
+
+    function renderMovies(movies, containerId) {
+      const container = document.getElementById(containerId);
+      movies.forEach(movie => {
+        const card = document.createElement('div');
+        card.className = 'movie-card';
+        card.innerHTML = `<img src="${movie.image}" alt="${movie.title}" />`;
+        card.onclick = () => openPopup(movie);
+        container.appendChild(card);
+      });
+    }
+
+    function openPopup(movie) {
+      document.getElementById('popup-trailer').src = movie.trailer;
+      document.getElementById('popup-title').textContent = movie.title;
+      document.getElementById('popup-desc').textContent = movie.desc;
+      document.getElementById('popup').style.display = 'flex';
+    }
+
+    function closePopup() {
+      document.getElementById('popup-trailer').src = "";
+      document.getElementById('popup').style.display = 'none';
+    }
+
+    renderMovies(moviesTrending, 'trending-movies');
+    renderMovies(moviesRecommended, 'recommended-movies');
+  </script></body>
+</html>
