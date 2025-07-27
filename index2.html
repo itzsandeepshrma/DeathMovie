@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Death Movie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
+  <style>
+    .movie-poster:hover {
+      transform: scale(1.05);
+      transition: 0.3s ease-in-out;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head><body class="bg-black text-white dark:bg-white dark:text-black">
+  <!-- Navbar -->
+  <header class="flex items-center justify-between p-4 border-b border-gray-700 dark:border-gray-300">
+    <div class="text-2xl font-bold">Death Movie</div>
+    <div class="flex-grow px-4">
+      <input type="text" placeholder="Search movies..." class="w-full rounded-full px-4 py-1 text-black dark:text-white bg-white dark:bg-black border dark:border-gray-300" />
+    </div>
+    <div class="flex gap-3 items-center">
+      <button onclick="toggleTheme()">
+        <span id="theme-icon">🌙</span>
+      </button>
+      <a href="https://t.me/deathchatting_world" target="_blank" class="text-blue-400 hover:underline">Telegram</a>
+    </div>
+  </header>  <!-- Hero Slider -->  <section class="relative h-[60vh] w-full overflow-hidden bg-cover bg-center" style="background-image: url('https://image.tmdb.org/t/p/original/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg');">
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start px-6">
+      <h1 class="text-4xl font-bold mb-4 text-white drop-shadow-lg">Now Streaming: John Wick Chapter 4</h1>
+      <p class="mb-4 text-lg text-gray-300 max-w-md">A legendary assassin is back with vengeance. Action-packed and visually stunning.</p>
+      <button class="px-6 py-2 bg-red-600 hover:bg-red-700 rounded-full text-white">Watch Now</button>
+    </div>
+  </section>  <!-- Latest Releases -->  <section class="px-4 py-8">
+    <h2 class="text-3xl font-bold mb-4">🔥 Latest Releases</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <!-- Movie Card -->
+      <div class="cursor-pointer group relative" onclick="showDetails('John Wick 4','Action, Thriller','2h 49min','7.9')">
+        <img src="https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" alt="John Wick 4" class="rounded-lg movie-poster">
+        <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">John Wick 4</div>
+      </div>
+      <!-- Add more movie cards here -->
+    </div>
+  </section>  <!-- Movie Details Modal -->  <div id="movieModal" class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center z-50">
+    <div class="bg-white dark:bg-black text-black dark:text-white p-6 rounded-lg max-w-md w-full">
+      <h3 id="modalTitle" class="text-2xl font-bold mb-2">Movie Title</h3>
+      <p><strong>Genre:</strong> <span id="modalGenre"></span></p>
+      <p><strong>Duration:</strong> <span id="modalDuration"></span></p>
+      <p><strong>IMDb:</strong> <span id="modalRating"></span></p>
+      <button onclick="closeModal()" class="mt-4 px-4 py-2 bg-red-600 text-white rounded">Close</button>
+    </div>
+  </div>  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        icon.textContent = '🌙';
+      } else {
+        html.classList.add('dark');
+        icon.textContent = '☀️';
+      }
+    }
+
+    function showDetails(title, genre, duration, rating) {
+      document.getElementById('movieModal').classList.remove('hidden');
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalGenre').textContent = genre;
+      document.getElementById('modalDuration').textContent = duration;
+      document.getElementById('modalRating').textContent = rating;
+    }
+
+    function closeModal() {
+      document.getElementById('movieModal').classList.add('hidden');
+    }
+
+    gsap.from('section', {opacity: 0, y: 50, duration: 1, stagger: 0.2});
+  </script>
+</body>
+</html>
