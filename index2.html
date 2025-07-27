@@ -20,6 +20,12 @@
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
   </style>
 </head><body class="bg-black text-white dark:bg-white dark:text-black">
   <!-- Navbar -->
@@ -118,7 +124,9 @@
       <p><strong>IMDb:</strong> <span id="modalRating"></span></p>
       <button onclick="closeModal()" class="mt-4 px-4 py-2 bg-red-600 text-white rounded">Close</button>
     </div>
-  </div>  <script>
+  </div> <footer class="footer" id="footer">
+    <p>© 2025 DeathMovie All rights reserved</p>
+  </footer> <script>
     function toggleTheme() {
       const html = document.documentElement;
       const icon = document.getElementById('theme-icon');
