@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Death Movie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    .glass-modal {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    .fade-in {
+      animation: fadeIn 0.3s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body class="bg-black text-white font-sans">
+
+  <!-- Movies Grid -->
+  <section class="p-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+    <div onclick="showDetails('Jujutsu Kaisen 0','Animation, Action, Fantasy','1h 45min','7.9')"
+         class="cursor-pointer transform transition hover:scale-105 duration-300">
+      <img src="https://image.tmdb.org/t/p/w500/3pTwMUEavTzVOh6yLN0aEwR7uSy.jpg"
+           class="rounded-xl shadow-lg" />
+      <h3 class="mt-2 text-lg font-semibold">Jujutsu Kaisen 0</h3>
+    </div>
+    <!-- Add more movie cards here -->
+  </section>
+
+  <!-- Movie Details Modal -->
+  <div id="modalOverlay"
+       onclick="closeModal()"
+       class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center z-50">
+    <div onclick="event.stopPropagation()"
+         id="movieCard"
+         class="glass-modal fade-in p-6 rounded-xl max-w-md w-full text-white relative">
+      <button onclick="closeModal()" class="absolute top-2 right-2 text-white text-xl">&times;</button>
+      <h2 id="modalTitle" class="text-2xl font-bold mb-2"></h2>
+      <p class="text-sm mb-1"><strong>Genre:</strong> <span id="modalGenre"></span></p>
+      <p class="text-sm mb-1"><strong>Duration:</strong> <span id="modalDuration"></span></p>
+      <p class="text-sm mb-1"><strong>IMDb:</strong> <span id="modalRating"></span></p>
+    </div>
+  </div>
+
+  <script>
+    function showDetails(title, genre, duration, rating) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalGenre').textContent = genre;
+      document.getElementById('modalDuration').textContent = duration;
+      document.getElementById('modalRating').textContent = rating;
+
+      const overlay = document.getElementById('modalOverlay');
+      overlay.classList.remove('hidden');
+      gsap.fromTo("#movieCard", { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "power2.out" });
+    }
+
+    function closeModal() {
+      gsap.to("#movieCard", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.3,
+        ease: "power2.in",
+        onComplete: () => document.getElementById('modalOverlay').classList.add('hidden')
+      });
+    }
+  </script>
+
+</body>
+</html>
