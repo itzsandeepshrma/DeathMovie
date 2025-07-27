@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Death Movie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-black text-white font-sans">
+
+  <!-- Movie Grid -->
+  <section class="p-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <!-- Example Movie Card -->
+    <div onclick="showDetails({
+      title: 'Jujutsu Kaisen 0',
+      genre: 'Animation, Action, Fantasy',
+      duration: '1h 45min',
+      rating: '7.9',
+      trailer: 'eGSL-l95VXw',
+      description: 'Yuta Okkotsu gains control of a powerful cursed spirit and enrolls in Tokyo Jujutsu High School to control it and fight curses.'
+    })" class="cursor-pointer hover:scale-105 transition duration-300">
+      <img src="https://image.tmdb.org/t/p/w500/3pTwMUEavTzVOh6yLN0aEwR7uSy.jpg" class="rounded-xl shadow-md" />
+      <h3 class="mt-2 text-lg font-semibold">Jujutsu Kaisen 0</h3>
+    </div>
+
+    <div onclick="showDetails({
+      title: 'Interstellar',
+      genre: 'Sci-Fi, Adventure, Drama',
+      duration: '2h 49min',
+      rating: '8.6',
+      trailer: 'zSWdZVtXT7E',
+      description: 'A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.'
+    })" class="cursor-pointer hover:scale-105 transition duration-300">
+      <img src="https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg" class="rounded-xl shadow-md" />
+      <h3 class="mt-2 text-lg font-semibold">Interstellar</h3>
+    </div>
+
+    <!-- Add more movie cards the same way -->
+  </section>
+
+  <!-- Modal -->
+  <div id="modalOverlay" onclick="closeModal()"
+       class="fixed inset-0 bg-black bg-opacity-80 hidden justify-center items-center z-50 p-4">
+    <div onclick="event.stopPropagation()" id="movieCard"
+         class="glass w-full max-w-2xl p-6 rounded-xl text-white relative">
+
+      <button onclick="closeModal()" class="absolute top-3 right-4 text-2xl hover:text-red-500">&times;</button>
+
+      <h2 id="modalTitle" class="text-3xl font-bold mb-2"></h2>
+      <p class="text-sm"><strong>Genre:</strong> <span id="modalGenre"></span></p>
+      <p class="text-sm"><strong>Duration:</strong> <span id="modalDuration"></span></p>
+      <p class="text-sm"><strong>IMDb:</strong> <span id="modalRating"></span></p>
+
+      <div class="my-4">
+        <iframe id="modalTrailer" class="w-full h-60 rounded-xl"
+                src=""
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen>
+        </iframe>
+      </div>
+
+      <p id="modalDescription" class="text-sm text-gray-300 mb-4"></p>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button class="bg-red-600 px-4 py-2 rounded-full hover:bg-red-700 transition w-full sm:w-auto">▶️ Play Now</button>
+        <button class="border border-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition w-full sm:w-auto">➕ Add to Watchlist</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showDetails(movie) {
+      document.getElementById('modalTitle').textContent = movie.title;
+      document.getElementById('modalGenre').textContent = movie.genre;
+      document.getElementById('modalDuration').textContent = movie.duration;
+      document.getElementById('modalRating').textContent = movie.rating;
+      document.getElementById('modalDescription').textContent = movie.description;
+
+      const trailerURL = `https://www.youtube.com/embed/${movie.trailer}?autoplay=1&rel=0`;
+      document.getElementById('modalTrailer').src = trailerURL;
+
+      const overlay = document.getElementById('modalOverlay');
+      overlay.classList.remove('hidden');
+
+      gsap.fromTo("#movieCard", { scale: 0.85, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4 });
+    }
+
+    function closeModal() {
+      gsap.to("#movieCard", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          document.getElementById('modalOverlay').classList.add('hidden');
+          document.getElementById('modalTrailer').src = ''; // stop trailer autoplay
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
