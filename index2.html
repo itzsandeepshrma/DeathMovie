@@ -57,6 +57,56 @@
         <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">John Wick 4</div>
       </div>
       <!-- Add more movie cards here -->
+
+      <!-- John Wick 4 already added above -->
+
+<!-- Avengers: Endgame -->
+<div class="cursor-pointer group relative" onclick="showDetails('Avengers: Endgame','Action, Sci-Fi','3h 1min','8.4')">
+  <img src="https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg" alt="Avengers: Endgame" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Avengers: Endgame</div>
+</div>
+
+<!-- Jujutsu Kaisen 0 -->
+<div class="cursor-pointer group relative" onclick="showDetails('Jujutsu Kaisen 0','Animation, Action, Fantasy','1h 45min','7.9')">
+  <img src="https://image.tmdb.org/t/p/w500/3pTwMUEavTzVOh6yLN0aEwR7uSy.jpg" alt="Jujutsu Kaisen 0" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Jujutsu Kaisen 0</div>
+</div>
+
+<!-- Interstellar -->
+<div class="cursor-pointer group relative" onclick="showDetails('Interstellar','Sci-Fi, Adventure','2h 49min','8.6')">
+  <img src="https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg" alt="Interstellar" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Interstellar</div>
+</div>
+
+<!-- Demon Slayer: Mugen Train -->
+<div class="cursor-pointer group relative" onclick="showDetails('Demon Slayer: Mugen Train','Animation, Action, Fantasy','1h 57min','8.2')">
+  <img src="https://image.tmdb.org/t/p/w500/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg" alt="Demon Slayer: Mugen Train" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Mugen Train</div>
+</div>
+
+<!-- Spider-Man: No Way Home -->
+<div class="cursor-pointer group relative" onclick="showDetails('Spider-Man: No Way Home','Action, Sci-Fi, Adventure','2h 28min','8.2')">
+  <img src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" alt="No Way Home" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">No Way Home</div>
+</div>
+
+<!-- Attack on Titan Final Season -->
+<div class="cursor-pointer group relative" onclick="showDetails('Attack on Titan Final Season','Animation, Action, Drama','24 Episodes','9.0')">
+  <img src="https://image.tmdb.org/t/p/w500/4UjiPdFKJGJYdxwRs2Rzg7EmWqr.jpg" alt="AOT Final Season" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">AOT Final Season</div>
+</div>
+
+<!-- Inception -->
+<div class="cursor-pointer group relative" onclick="showDetails('Inception','Action, Sci-Fi, Thriller','2h 28min','8.8')">
+  <img src="https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg" alt="Inception" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Inception</div>
+</div>
+
+
+
+
+
+      
     </div>
   </section>  <!-- Movie Details Modal -->  <div id="movieModal" class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center z-50">
     <div class="bg-white dark:bg-black text-black dark:text-white p-6 rounded-lg max-w-md w-full">
@@ -97,11 +147,6 @@
 <script>
   // Dynamic Hero Section Data
   const heroMovies = [
-    {
-      title: "Now Streaming: John Wick Chapter 4",
-      description: "A legendary assassin is back with vengeance. Action-packed and visually stunning.",
-      bg: "https://image.tmdb.org/t/p/original/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg"
-    },
     {
       title: "Now Streaming: Avengers: Endgame",
       description: "The epic conclusion to the Infinity Saga with Earth’s mightiest heroes.",
