@@ -2,6 +2,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Death Movie</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
@@ -31,7 +32,8 @@
       <button onclick="toggleTheme()">
         <span id="theme-icon">🌙</span>
       </button>
-      <a href="https://t.me/deathchatting_world" target="_blank" class="text-blue-400 hover:underline">Telegram</a>
+      <a href="https://t.me/deathchatting_world" target="_blank" class="flex items-center gap-1 text-blue-400 hover:underline">
+  <i class="fab fa-telegram-plane"></i></a>
     </div>
   </header>  
   <!-- Hero Slider Section -->
@@ -49,7 +51,7 @@
   
   
   <!-- Latest Releases -->  <section class="px-4 py-8">
-    <h2 class="text-3xl font-bold mb-4">🔥 Latest Releases</h2>
+    <h2 class="text-3xl font-bold mb-4">Latest Releases</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
       <!-- Movie Card -->
       <div class="cursor-pointer group relative" onclick="showDetails('John Wick 4','Action, Thriller','2h 49min','7.9')">
