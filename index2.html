@@ -33,13 +33,22 @@
       </button>
       <a href="https://t.me/deathchatting_world" target="_blank" class="text-blue-400 hover:underline">Telegram</a>
     </div>
-  </header>  <!-- Hero Slider -->  <section class="relative h-[60vh] w-full overflow-hidden bg-cover bg-center" style="background-image: url('https://image.tmdb.org/t/p/original/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg');">
-    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start px-6">
-      <h1 class="text-4xl font-bold mb-4 text-white drop-shadow-lg">Now Streaming: John Wick Chapter 4</h1>
-      <p class="mb-4 text-lg text-gray-300 max-w-md">A legendary assassin is back with vengeance. Action-packed and visually stunning.</p>
-      <button class="px-6 py-2 bg-red-600 hover:bg-red-700 rounded-full text-white">Watch Now</button>
-    </div>
-  </section>  <!-- Latest Releases -->  <section class="px-4 py-8">
+  </header>  
+  <!-- Hero Slider Section -->
+<section id="heroSection" class="relative h-[60vh] w-full overflow-hidden bg-cover bg-center transition-all duration-700" style="background-image: url('https://image.tmdb.org/t/p/original/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg');">
+  <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start px-6">
+    <h1 id="heroTitle" class="text-4xl font-bold mb-4 text-white drop-shadow-lg">Now Streaming: John Wick Chapter 4</h1>
+    <p id="heroDesc" class="mb-4 text-lg text-gray-300 max-w-md">A legendary assassin is back with vengeance. Action-packed and visually stunning.</p>
+    <button class="px-6 py-2 bg-red-600 hover:bg-red-700 rounded-full text-white">Watch Now</button>
+  </div>
+</section>
+  
+
+  
+
+  
+  
+  <!-- Latest Releases -->  <section class="px-4 py-8">
     <h2 class="text-3xl font-bold mb-4">🔥 Latest Releases</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
       <!-- Movie Card -->
@@ -84,5 +93,53 @@
 
     gsap.from('section', {opacity: 0, y: 50, duration: 1, stagger: 0.2});
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  // Dynamic Hero Section Data
+  const heroMovies = [
+    {
+      title: "Now Streaming: John Wick Chapter 4",
+      description: "A legendary assassin is back with vengeance. Action-packed and visually stunning.",
+      bg: "https://image.tmdb.org/t/p/original/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg"
+    },
+    {
+      title: "Now Streaming: Avengers: Endgame",
+      description: "The epic conclusion to the Infinity Saga with Earth’s mightiest heroes.",
+      bg: "https://image.tmdb.org/t/p/original/or06FN3Dka5tukK1e9sl16pB3iy.jpg"
+    },
+    {
+      title: "Now Streaming: Interstellar",
+      description: "A journey beyond the stars in search of a new home for humanity.",
+      bg: "https://image.tmdb.org/t/p/original/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
+    },
+    {
+      title: "Now Streaming: Demon Slayer: Mugen Train",
+      description: "Tanjiro faces the demon on a train filled with death and darkness.",
+      bg: "https://image.tmdb.org/t/p/original/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg"
+    }
+  ];
+
+  let currentHeroIndex = 0;
+
+  function updateHeroSection() {
+    const movie = heroMovies[currentHeroIndex];
+    const section = document.getElementById("heroSection");
+    const title = document.getElementById("heroTitle");
+    const desc = document.getElementById("heroDesc");
+
+    gsap.to(title, { opacity: 0, y: -20, duration: 0.4 });
+    gsap.to(desc, { opacity: 0, y: -20, duration: 0.4, onComplete: () => {
+      section.style.backgroundImage = `url('${movie.bg}')`;
+      title.textContent = movie.title;
+      desc.textContent = movie.description;
+      gsap.fromTo(title, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
+      gsap.fromTo(desc, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
+    }});
+
+    currentHeroIndex = (currentHeroIndex + 1) % heroMovies.length;
+  }
+
+  setInterval(updateHeroSection, 5000); // Change every 5 seconds
+        </script>
 </body>
 </html>
