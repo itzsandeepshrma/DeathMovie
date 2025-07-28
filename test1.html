@@ -61,32 +61,39 @@
           <div class="logo">DeathMovie</div>
         </div>
 
-        <!-- Center Search Input -->
-        <div class="hidden md:flex items-center gap-4 w-full max-w-xl mx-auto">
-          <input type="text" placeholder="Search movies..." class="search-input w-full px-4 py-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-crimson transition duration-300" />
+        <div class="flex items-center justify-between h-16">
+  <!-- Mobile menu button on left -->
+  <div class="flex items-center space-x-4">
+    <button id="mobile-menu-button" class="text-white focus:outline-none text-2xl md:hidden">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="logo">DeathMovie</div>
+  </div>
+
+  <!-- Center Search Input -->
+  <div class="hidden md:flex items-center gap-4 w-full max-w-xl mx-auto">
+    <input type="text" placeholder="Search movies..." class="search-input w-full px-4 py-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-crimson transition duration-300" />
+  </div>
+
+  <!-- Right Side -->
+  <div class="flex items-center space-x-4">
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex items-center space-x-6">
+      <a href="#home" class="text-white hover:text-crimson transition">Home</a>
+      <a href="#trending" class="text-white hover:text-crimson transition">Trending</a>
+      <a href="#recommend" class="text-white hover:text-crimson transition">Recommended</a>
+      <a href="#footer" class="text-white hover:text-crimson transition">About</a>
+      <button onclick="toggleTheme()" class="text-xl" id="themeToggle">🌙</button>
+      <a href="https://t.me/deathchatting_world" target="_blank" class="text-blue-400 hover:underline text-xl">
+        <i class="fab fa-telegram-plane"></i>
+      </a>
+    </nav>
+  </div>
         </div>
 
-        <!-- Right Side -->
-        <div class="flex items-center space-x-4">
-          <!-- Mobile menu button -->
-          <button id="mobile-menu-button" class="text-white focus:outline-none text-2xl md:hidden">
-            <i class="fas fa-bars"></i>
-          </button>
 
-          <!-- Desktop Menu -->
-          <nav class="hidden md:flex items-center space-x-6">
-            <a href="#home" class="text-white hover:text-crimson transition">Home</a>
-            <a href="#trending" class="text-white hover:text-crimson transition">Trending</a>
-            <a href="#recommend" class="text-white hover:text-crimson transition">Recommended</a>
-            <a href="#footer" class="text-white hover:text-crimson transition">About</a>
-            <button onclick="toggleTheme()" class="text-xl" id="themeToggle">🌙</button>
-            <a href="https://t.me/deathchatting_world" target="_blank" class="text-blue-400 hover:underline text-xl">
-              <i class="fab fa-telegram-plane"></i>
-            </a>
-          </nav>
-        </div>
-      </div>
-    </div>
+
+        
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
@@ -150,5 +157,4 @@
       });
     });
   </script>
-</body>
-  </html>
+</body></html>
