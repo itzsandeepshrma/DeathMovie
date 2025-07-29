@@ -28,42 +28,26 @@
     }
   </style>
 </head><body class="bg-black text-white dark:bg-white dark:text-black">
+<!-- Header -->
+<header class="w-full bg-black dark:bg-white border-b border-gray-700 dark:border-gray-300 p-4 relative z-50">
+  <div class="flex items-center justify-between">
 
+    <!-- Left: Hamburger + Logo -->
+    <div class="flex items-center gap-4">
+      <!-- Hamburger -->
+      <div id="menu-btn" class="flex flex-col justify-center items-start space-y-1 cursor-pointer">
+        <div class="w-5 h-0.5 bg-white dark:bg-black"></div>
+        <div class="w-5 h-0.5 bg-white dark:bg-black"></div>
+        <div class="w-5 h-0.5 bg-white dark:bg-black"></div>
+      </div>
 
-<header class="flex flex-col md:flex-row md:items-center justify-between p-4 border-b border-gray-700 dark:border-gray-300 bg-black dark:bg-white">
+      <!-- Logo -->
+      <div class="text-lg font-bold text-white dark:text-black">Death Movie</div>
+    </div>
 
-<!-- Logo + Hamburger -->
-<div class="flex items-center space-x-3">
-  <!-- Hamburger Button -->
-  <div id="menu-btn" class="flex flex-col justify-center items-start space-y-1 cursor-pointer">
-    <div class="w-6 h-0.5 bg-white dark:bg-black"></div>
-    <div class="w-6 h-0.5 bg-white dark:bg-black"></div>
-    <div class="w-6 h-0.5 bg-white dark:bg-black"></div>
-  </div>
-
-  <!-- Logo Text -->
-  <div class="text-2xl font-bold">Death Movie</div>
-</div>
-
-    <!-- Right Side: Theme + Telegram (visible on mobile too) -->
-    
-
-  <!-- Middle Row: Navigation + Search -->
-  <div class="flex flex-col md:flex-row md:items-center justify-between w-full mt-4 md:mt-0">
-
-    <!-- Navigation Menu -->
-    <nav class="flex flex-wrap items-center gap-4 text-white dark:text-black text-sm font-semibold justify-center md:justify-start">
-      <a href="#" class="hover:text-red-500 transition">Home</a>
-      <a href="#" class="hover:text-red-500 transition">Hollywood</a>
-      <a href="#" class="hover:text-red-500 transition">Bollywood</a>
-      <a href="#" class="hover:text-red-500 transition">K-Pop</a>
-    </nav>
-
-    <!-- Search + Icons (on desktop only) -->
-    <div class="hidden md:flex items-center gap-4 ml-auto">
-
-      <input type="text" placeholder="Search..." class="rounded-full px-4 py-1 text-black dark:text-white bg-white dark:bg-black border dark:border-gray-300" />
-      <button onclick="toggleTheme()" class="text-white dark:text-black text-xl">
+    <!-- Right: Theme + Telegram -->
+    <div class="flex items-center gap-4">
+      <button onclick="toggleTheme()" class="text-xl text-white dark:text-black">
         <span id="theme-icon-desktop">🌙</span>
       </button>
       <a href="https://t.me/deathchatting_world" target="_blank" class="text-blue-400 text-xl">
@@ -71,7 +55,19 @@
       </a>
     </div>
   </div>
+
+  <!-- GSAP Left-Aligned Mobile Menu -->
+  <div id="mobileMenu" class="fixed top-16 left-0 w-full h-screen bg-black dark:bg-white bg-opacity-95 dark:bg-opacity-95 backdrop-blur-md hidden z-40 px-6 py-8">
+    <nav class="flex flex-col gap-6 text-white dark:text-black text-lg font-semibold">
+      <a href="#" class="hover:text-red-500 transition">Home</a>
+      <a href="#" class="hover:text-red-500 transition">Hollywood</a>
+      <a href="#" class="hover:text-red-500 transition">Bollywood</a>
+      <a href="#" class="hover:text-red-500 transition">K-Pop</a>
+    </nav>
+  </div>
 </header>
+  
+
   <!-- Mobile Navigation Menu -->
 <div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 dark:bg-white dark:bg-opacity-90 backdrop-blur-md hidden flex-col items-center justify-center z-40 px-6">
   <!-- Close Button -->
@@ -298,6 +294,47 @@ document.addEventListener('click', function (e) {
     }
   });
   </script>
+  <script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Optional: Dark mode toggle logic
+  function toggleTheme() {
+    document.documentElement.classList.toggle('dark');
+  }
+</script>
+<!-- GSAP + Toggle Script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  let menuOpen = false;
+
+  menuBtn.addEventListener("click", () => {
+    if (!menuOpen) {
+      mobileMenu.classList.remove("hidden");
+      gsap.fromTo(mobileMenu, { x: "-100%" }, { x: "0%", duration: 0.5, ease: "power2.out" });
+      menuOpen = true;
+    } else {
+      gsap.to(mobileMenu, {
+        x: "-100%",
+        duration: 0.5,
+        ease: "power2.in",
+        onComplete: () => mobileMenu.classList.add("hidden")
+      });
+      menuOpen = false;
+    }
+  });
+
+  function toggleTheme() {
+    document.documentElement.classList.toggle('dark');
+  }
+</script>
 </body>
   </html>
   
