@@ -72,6 +72,22 @@
     </div>
   </div>
 </header>
+  <!-- Mobile Navigation Menu -->
+<div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 dark:bg-white dark:bg-opacity-90 backdrop-blur-md hidden flex-col items-center justify-center z-40 px-6">
+  <!-- Close Button -->
+  <div class="absolute top-6 right-6 text-white dark:text-black text-3xl cursor-pointer" id="closeMenuBtn">
+    &times;
+  </div>
+
+  <nav class="flex flex-col space-y-6 text-2xl font-extrabold text-white dark:text-black text-center">
+    <a href="#" class="hover:text-red-500 transition">Home</a>
+    <a href="#" class="hover:text-red-500 transition">Hollywood</a>
+    <a href="#" class="hover:text-red-500 transition">Bollywood</a>
+    <a href="#" class="hover:text-red-500 transition">K-Pop</a>
+  </nav>
+</div>
+
+  
     
   
   
@@ -238,6 +254,49 @@ document.addEventListener('click', function (e) {
     ease: "power3.out"
   });
   </script>
+  <script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+  let isMenuOpen = false;
+
+  function openMenu() {
+    mobileMenu.classList.remove('hidden');
+    gsap.fromTo("#mobileMenu nav a",
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" }
+    );
+    isMenuOpen = true;
+  }
+
+  function closeMenu() {
+    gsap.to("#mobileMenu nav a", {
+      opacity: 0, y: -20, duration: 0.3, stagger: 0.05, ease: "power2.in", onComplete: () => {
+        mobileMenu.classList.add('hidden');
+        isMenuOpen = false;
+      }
+    });
+  }
+
+  menuBtn.addEventListener('click', openMenu);
+  closeMenuBtn.addEventListener('click', closeMenu);
+
+  // Optional: Close on outside click or Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape" && isMenuOpen) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (
+      isMenuOpen &&
+      !mobileMenu.contains(e.target) &&
+      !menuBtn.contains(e.target)
+    ) {
+      closeMenu();
+    }
+  });
   </script>
 </body>
   </html>
