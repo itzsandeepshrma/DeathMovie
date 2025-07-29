@@ -1,1 +1,208 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Death Movie</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
+  <style>
+    .movie-poster:hover {
+      transform: scale(1.05);
+      transition: 0.3s ease-in-out;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+  </style>
+</head><body class="bg-black text-white dark:bg-white dark:text-black">
+  <!-- Navbar -->
+  <header class="flex items-center justify-between p-4 border-b border-gray-700 dark:border-gray-300">
+    <div class="text-2xl font-bold">Death Movie</div>
+    <div class="flex-grow px-4">
+      <input type="text" placeholder="Search movies..." class="w-full rounded-full px-4 py-1 text-black dark:text-white bg-white dark:bg-black border dark:border-gray-300" />
+    </div>
+    <div class="flex gap-3 items-center">
+      <button onclick="toggleTheme()">
+        <span id="theme-icon">🌙</span>
+      </button>
+      <a href="https://t.me/deathchatting_world" target="_blank" class="flex items-center gap-1 text-blue-400 hover:underline">
+  <i class="fab fa-telegram-plane"></i></a>
+    </div>
+  </header>  
+  <!-- Hero Slider Section -->
+<!-- Premium Tagline Section -->
+<section id="premiumTagline" class="h-[25vh] w-full bg-black flex items-center justify-center">
+  <p class="text-red-500 text-xl md:text-3xl font-extrabold tracking-wider text-center drop-shadow-[0_0_10px_rgba(255,0,0,0.5)]">
+    Your premium destination for high quality Movies
+  </p>
+</section>
+  
 
+  
+
+  
+  
+  <!-- Latest Releases -->  <section class="px-4 py-8">
+    <h2 class="text-3xl font-bold mb-4">Latest Releases</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <!-- Movie Card -->
+      <div class="cursor-pointer group relative" onclick="showDetails('John Wick 4','Action, Thriller','2h 49min','7.9')">
+        <img src="https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" alt="John Wick 4" class="rounded-lg movie-poster">
+        <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">John Wick 4</div>
+      </div>
+      <!-- Add more movie cards here -->
+
+      <!-- John Wick 4 already added above -->
+
+<!-- Avengers: Endgame -->
+<div class="cursor-pointer group relative" onclick="showDetails('Avengers: Endgame','Action, Sci-Fi','3h 1min','8.4')">
+  <img src="https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg" alt="Avengers: Endgame" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Avengers: Endgame</div>
+</div>
+
+<!-- Jujutsu Kaisen 0 -->
+<div class="cursor-pointer group relative" onclick="showDetails('Jujutsu Kaisen 0','Animation, Action, Fantasy','1h 45min','7.9')">
+  <img src="https://image.tmdb.org/t/p/w500/3pTwMUEavTzVOh6yLN0aEwR7uSy.jpg" alt="Jujutsu Kaisen 0" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Jujutsu Kaisen 0</div>
+</div>
+
+<!-- Interstellar -->
+<div class="cursor-pointer group relative" onclick="showDetails('Interstellar','Sci-Fi, Adventure','2h 49min','8.6')">
+  <img src="https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg" alt="Interstellar" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Interstellar</div>
+</div>
+
+<!-- Demon Slayer: Mugen Train -->
+<div class="cursor-pointer group relative" onclick="showDetails('Demon Slayer: Mugen Train','Animation, Action, Fantasy','1h 57min','8.2')">
+  <img src="https://image.tmdb.org/t/p/w500/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg" alt="Demon Slayer: Mugen Train" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Mugen Train</div>
+</div>
+
+<!-- Spider-Man: No Way Home -->
+<div class="cursor-pointer group relative" onclick="showDetails('Spider-Man: No Way Home','Action, Sci-Fi, Adventure','2h 28min','8.2')">
+  <img src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" alt="No Way Home" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">No Way Home</div>
+</div>
+
+<!-- Attack on Titan Final Season -->
+<div class="cursor-pointer group relative" onclick="showDetails('Attack on Titan Final Season','Animation, Action, Drama','24 Episodes','9.0')">
+  <img src="https://image.tmdb.org/t/p/w500/4UjiPdFKJGJYdxwRs2Rzg7EmWqr.jpg" alt="AOT Final Season" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">AOT Final Season</div>
+</div>
+
+<!-- Inception -->
+<div class="cursor-pointer group relative" onclick="showDetails('Inception','Action, Sci-Fi, Thriller','2h 28min','8.8')">
+  <img src="https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg" alt="Inception" class="rounded-lg movie-poster">
+  <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Inception</div>
+</div>
+
+
+
+
+
+      
+    </div>
+  </section>  <!-- Movie Details Modal -->  <div id="movieModal" class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center z-50">
+    <div class="bg-white dark:bg-black text-black dark:text-white p-6 rounded-lg max-w-md w-full">
+      <h3 id="modalTitle" class="text-2xl font-bold mb-2">Movie Title</h3>
+      <p><strong>Genre:</strong> <span id="modalGenre"></span></p>
+      <p><strong>Duration:</strong> <span id="modalDuration"></span></p>
+      <p><strong>IMDb:</strong> <span id="modalRating"></span></p>
+      <button onclick="closeModal()" class="mt-4 px-4 py-2 bg-red-600 text-white rounded">Close</button>
+    </div>
+  </div> <footer class="footer" id="footer">
+    <p>© 2025 DeathMovie All rights reserved</p>
+  </footer> <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const icon = document.getElementById('theme-icon');
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        icon.textContent = '🌙';
+      } else {
+        html.classList.add('dark');
+        icon.textContent = '☀️';
+      }
+    }
+
+    function showDetails(title, genre, duration, rating) {
+      document.getElementById('movieModal').classList.remove('hidden');
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalGenre').textContent = genre;
+      document.getElementById('modalDuration').textContent = duration;
+      document.getElementById('modalRating').textContent = rating;
+    }
+
+    function closeModal() {
+      document.getElementById('movieModal').classList.add('hidden');
+    }
+
+    gsap.from('section', {opacity: 0, y: 50, duration: 1, stagger: 0.2});
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  // Dynamic Hero Section Data
+  const heroMovies = [
+    {
+      title: "Now Streaming: Avengers: Endgame",
+      description: "The epic conclusion to the Infinity Saga with Earth’s mightiest heroes.",
+      bg: "https://image.tmdb.org/t/p/original/or06FN3Dka5tukK1e9sl16pB3iy.jpg"
+    },
+    {
+      title: "Now Streaming: Interstellar",
+      description: "A journey beyond the stars in search of a new home for humanity.",
+      bg: "https://image.tmdb.org/t/p/original/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
+    },
+    {
+      title: "Now Streaming: Demon Slayer: Mugen Train",
+      description: "Tanjiro faces the demon on a train filled with death and darkness.",
+      bg: "https://image.tmdb.org/t/p/original/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg"
+    }
+  ];
+
+  let currentHeroIndex = 0;
+
+  function updateHeroSection() {
+    const movie = heroMovies[currentHeroIndex];
+    const section = document.getElementById("heroSection");
+    const title = document.getElementById("heroTitle");
+    const desc = document.getElementById("heroDesc");
+
+    gsap.to(title, { opacity: 0, y: -20, duration: 0.4 });
+    gsap.to(desc, { opacity: 0, y: -20, duration: 0.4, onComplete: () => {
+      section.style.backgroundImage = `url('${movie.bg}')`;
+      title.textContent = movie.title;
+      desc.textContent = movie.description;
+      gsap.fromTo(title, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
+      gsap.fromTo(desc, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
+    }});
+
+    currentHeroIndex = (currentHeroIndex + 1) % heroMovies.length;
+  }
+
+  setInterval(updateHeroSection, 5000); // Change every 5 seconds
+        </script>
+  <script>
+  gsap.from("#premiumTagline p", {
+    opacity: 0,
+    y: 30,
+    duration: 1.2,
+    ease: "power3.out"
+  });
+  </script>
+</body>
+  </html>
+  
