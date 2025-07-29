@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Sidebar Toggle</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
+</head>
+<body class="bg-black text-white dark:bg-white dark:text-black">
+
+<!-- Hamburger Button -->
+<div id="menuToggle" class="fixed top-4 left-4 z-50 cursor-pointer p-2">
+  <div class="space-y-1">
+    <div class="w-6 h-0.5 bg-white dark:bg-black"></div>
+    <div class="w-6 h-0.5 bg-white dark:bg-black"></div>
+    <div class="w-6 h-0.5 bg-white dark:bg-black"></div>
+  </div>
+</div>
+
+<!-- Sidebar -->
+<aside id="sidebar" class="fixed top-0 left-0 h-full w-60 bg-gray-900 dark:bg-gray-100 p-4 space-y-6 transform -translate-x-full transition-transform z-40">
+  <!-- Logo -->
+  <div class="text-2xl font-extrabold flex items-center space-x-2 text-white dark:text-black">
+    <i class="fas fa-film"></i>
+    <span>DeathMovie</span>
+  </div>
+
+  <!-- Nav -->
+  <nav class="space-y-4 text-lg font-medium text-white dark:text-black">
+    <a href="#" class="flex items-center space-x-2 hover:text-red-500 transition"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="#" class="flex items-center space-x-2 hover:text-red-500 transition"><i class="fas fa-video"></i><span>Hollywood</span></a>
+    <a href="#" class="flex items-center space-x-2 hover:text-red-500 transition"><i class="fas fa-film"></i><span>Bollywood</span></a>
+    <a href="#" class="flex items-center space-x-2 hover:text-red-500 transition"><i class="fas fa-music"></i><span>K-Pop</span></a>
+    <a href="#" class="flex items-center space-x-2 hover:text-red-500 transition"><i class="fas fa-search"></i><span>Search</span></a>
+    <a href="#" class="flex items-center space-x-2 hover:text-red-500 transition"><i class="fas fa-envelope"></i><span>Contact</span></a>
+  </nav>
+</aside>
+
+<!-- Dummy Main Content -->
+<main class="p-8 ml-0 md:ml-60">
+  <h1 class="text-3xl font-bold">Movie Website Content</h1>
+  <p class="mt-4">Your movies, categories, and more go here.</p>
+</main>
+
+<!-- Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+
+<!-- Toggle Script -->
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebar');
+  let isOpen = false;
+
+  menuToggle.addEventListener('click', () => {
+    if (!isOpen) {
+      sidebar.classList.remove('-translate-x-full');
+      gsap.fromTo("#sidebar nav a", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5, stagger: 0.1 });
+    } else {
+      sidebar.classList.add('-translate-x-full');
+    }
+    isOpen = !isOpen;
+  });
+</script>
+
+</body>
+</html>
