@@ -56,17 +56,7 @@
     </div>
   </div>
 
-  <!-- GSAP Left-Aligned Mobile Menu -->
-  <div id="mobileMenu" class="fixed top-16 left-0 w-full h-screen bg-black dark:bg-white bg-opacity-95 dark:bg-opacity-95 backdrop-blur-md hidden z-40 px-6 py-8">
-    <nav class="flex flex-col gap-6 text-white dark:text-black text-lg font-semibold">
-      <a href="#" class="hover:text-red-500 transition">Home</a>
-      <a href="#" class="hover:text-red-500 transition">Hollywood</a>
-      <a href="#" class="hover:text-red-500 transition">Bollywood</a>
-      <a href="#" class="hover:text-red-500 transition">K-Pop</a>
-    </nav>
-  </div>
-</header>
-  
+
 
   <!-- Mobile Navigation Menu -->
 <div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 dark:bg-white dark:bg-opacity-90 backdrop-blur-md hidden flex-col items-center justify-center z-40 px-6">
@@ -76,10 +66,12 @@
   </div>
 
   <nav class="flex flex-col space-y-6 text-2xl font-extrabold text-white dark:text-black text-center">
-    <a href="#" class="hover:text-red-500 transition">Home</a>
-    <a href="#" class="hover:text-red-500 transition">Hollywood</a>
-    <a href="#" class="hover:text-red-500 transition">Bollywood</a>
-    <a href="#" class="hover:text-red-500 transition">K-Pop</a>
+  <a href="#" class="hover:text-red-500 transition">Hollywood</a>
+  <a href="#" class="hover:text-red-500 transition">Bollywood</a>
+  <a href="#" class="hover:text-red-500 transition">Web Series</a>
+  <a href="#" class="hover:text-red-500 transition">Dual Audio</a>
+  <a href="#" class="hover:text-red-500 transition">K-Drama</a>
+  <a href="#" class="hover:text-red-500 transition">Horror</a>
   </nav>
 </div>
 
@@ -168,11 +160,33 @@
       <p><strong>IMDb:</strong> <span id="modalRating"></span></p>
       <button onclick="closeModal()" class="mt-4 px-4 py-2 bg-red-600 text-white rounded">Close</button>
     </div>
-  </div> <footer class="footer" id="footer">
-    <p>© 2025 DeathMovie All rights reserved</p>
-  </footer> <script>
+  </div> 
 
-
+  <footer class="bg-black dark:bg-white text-white dark:text-black mt-10 border-t border-gray-700 dark:border-gray-300">
+  <div class="max-w-6xl mx-auto px-4 py-10 text-center space-y-3 text-sm font-medium">
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="#" class="hover:text-red-500 transition">How to Download</a>
+      <a href="#" class="hover:text-red-500 transition">Report Broken Links</a>
+      <a href="#" class="hover:text-red-500 transition">About Us</a>
+      <a href="#" class="hover:text-red-500 transition">Contact</a>
+      <a href="#" class="hover:text-red-500 transition">Request Movie</a>
+      <a href="#" class="hover:text-red-500 transition">Privacy Policy</a>
+      <a href="#" class="hover:text-red-500 transition">DMCA</a>
+    </div>
+    <div class="text-gray-400 text-xs mt-4">
+      © 2025 Death Movies. All Rights Reserved.
+    </div>
+  </div>
+  </footer>
+  
+  
+  
+  
+  
+  
+  
+  
+  <script>
     function showDetails(title, genre, duration, rating) {
       document.getElementById('movieModal').classList.remove('hidden');
       document.getElementById('modalTitle').textContent = title;
@@ -243,98 +257,42 @@ document.addEventListener('click', function (e) {
   setInterval(updateHeroSection, 5000); // Change every 5 seconds
         </script>
   <script>
-  gsap.from("#premiumTagline p", {
-    opacity: 0,
-    y: 30,
-    duration: 1.2,
-    ease: "power3.out"
-  });
-  </script>
-  <script>
-  const menuBtn = document.getElementById('menu-btn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const closeMenuBtn = document.getElementById('closeMenuBtn');
-  let isMenuOpen = false;
-
-  function openMenu() {
-    mobileMenu.classList.remove('hidden');
-    gsap.fromTo("#mobileMenu nav a",
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" }
-    );
-    isMenuOpen = true;
-  }
-
-  function closeMenu() {
-    gsap.to("#mobileMenu nav a", {
-      opacity: 0, y: -20, duration: 0.3, stagger: 0.05, ease: "power2.in", onComplete: () => {
-        mobileMenu.classList.add('hidden');
-        isMenuOpen = false;
-      }
-    });
-  }
-
-  menuBtn.addEventListener('click', openMenu);
-  closeMenuBtn.addEventListener('click', closeMenu);
-
-  // Optional: Close on outside click or Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === "Escape" && isMenuOpen) {
-      closeMenu();
-    }
-  });
-
-  document.addEventListener('click', (e) => {
-    if (
-      isMenuOpen &&
-      !mobileMenu.contains(e.target) &&
-      !menuBtn.contains(e.target)
-    ) {
-      closeMenu();
-    }
-  });
-  </script>
-  <script>
   const menuBtn = document.getElementById("menu-btn");
   const mobileMenu = document.getElementById("mobileMenu");
-
-  menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-  });
-
-  // Optional: Dark mode toggle logic
-  function toggleTheme() {
-    document.documentElement.classList.toggle('dark');
-  }
-</script>
-<!-- GSAP + Toggle Script -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script>
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobileMenu");
-
+  const closeMenuBtn = document.getElementById("closeMenuBtn");
   let menuOpen = false;
 
   menuBtn.addEventListener("click", () => {
     if (!menuOpen) {
       mobileMenu.classList.remove("hidden");
-      gsap.fromTo(mobileMenu, { x: "-100%" }, { x: "0%", duration: 0.5, ease: "power2.out" });
+      gsap.fromTo("#mobileMenu nav a", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 });
       menuOpen = true;
-    } else {
-      gsap.to(mobileMenu, {
-        x: "-100%",
-        duration: 0.5,
-        ease: "power2.in",
-        onComplete: () => mobileMenu.classList.add("hidden")
-      });
-      menuOpen = false;
     }
   });
 
-  function toggleTheme() {
-    document.documentElement.classList.toggle('dark');
-  }
-</script>
+  closeMenuBtn.addEventListener("click", () => {
+    gsap.to("#mobileMenu nav a", {
+      opacity: 0, y: -20, duration: 0.3, stagger: 0.05, ease: "power2.in", onComplete: () => {
+        mobileMenu.classList.add("hidden");
+        menuOpen = false;
+      }
+    });
+  });
+
+  // Optional: Close on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menuOpen) closeMenuBtn.click();
+  });
+
+  // Active link highlight logic
+  const navLinks = document.querySelectorAll("header nav a");
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.forEach(l => l.classList.remove("text-red-500", "active-link"));
+      link.classList.add("text-red-500", "active-link");
+    });
+  });
+  </script>
 </body>
   </html>
   
