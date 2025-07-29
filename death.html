@@ -32,26 +32,21 @@
 
 <header class="flex flex-col md:flex-row md:items-center justify-between p-4 border-b border-gray-700 dark:border-gray-300 bg-black dark:bg-white">
 
-  <!-- Top Row: Left - Logo & Menu | Right - Icons -->
-  <div class="flex items-center justify-between w-full md:w-auto">
-    <!-- Left Side: Menu + Logo -->
-    <div class="flex items-center gap-3">
-      <button onclick="toggleMenu()" class="text-white dark:text-black text-xl md:hidden">
-        <i class="fas fa-ellipsis-v"></i>
-      </button>
-      <div class="text-2xl font-bold text-white dark:text-black">Death Movie</div>
-    </div>
+<!-- Logo + Hamburger -->
+<div class="flex items-center space-x-3">
+  <!-- Hamburger Button -->
+  <div id="menu-btn" class="flex flex-col justify-center items-start space-y-1 cursor-pointer">
+    <div class="w-6 h-0.5 bg-white dark:bg-black"></div>
+    <div class="w-6 h-0.5 bg-white dark:bg-black"></div>
+    <div class="w-6 h-0.5 bg-white dark:bg-black"></div>
+  </div>
+
+  <!-- Logo Text -->
+  <div class="text-2xl font-bold">Death Movie</div>
+</div>
 
     <!-- Right Side: Theme + Telegram (visible on mobile too) -->
-    <div class="flex items-center gap-4 md:hidden">
-      <button onclick="toggleTheme()" class="text-white dark:text-black text-xl">
-        <span id="theme-icon">🌙</span>
-      </button>
-      <a href="https://t.me/deathchatting_world" target="_blank" class="text-blue-400 text-xl">
-        <i class="fab fa-telegram-plane"></i>
-      </a>
-    </div>
-  </div>
+    
 
   <!-- Middle Row: Navigation + Search -->
   <div class="flex flex-col md:flex-row md:items-center justify-between w-full mt-4 md:mt-0">
@@ -66,6 +61,7 @@
 
     <!-- Search + Icons (on desktop only) -->
     <div class="hidden md:flex items-center gap-4 ml-auto">
+
       <input type="text" placeholder="Search..." class="rounded-full px-4 py-1 text-black dark:text-white bg-white dark:bg-black border dark:border-gray-300" />
       <button onclick="toggleTheme()" class="text-white dark:text-black text-xl">
         <span id="theme-icon-desktop">🌙</span>
@@ -76,6 +72,7 @@
     </div>
   </div>
 </header>
+    
   
   
   <!-- Hero Slider Section -->
@@ -162,17 +159,7 @@
   </div> <footer class="footer" id="footer">
     <p>© 2025 DeathMovie All rights reserved</p>
   </footer> <script>
-    function toggleTheme() {
-      const html = document.documentElement;
-      const icon = document.getElementById('theme-icon');
-      if (html.classList.contains('dark')) {
-        html.classList.remove('dark');
-        icon.textContent = '🌙';
-      } else {
-        html.classList.add('dark');
-        icon.textContent = '☀️';
-      }
-    }
+
 
     function showDetails(title, genre, duration, rating) {
       document.getElementById('movieModal').classList.remove('hidden');
@@ -251,23 +238,6 @@ document.addEventListener('click', function (e) {
     ease: "power3.out"
   });
   </script>
-  <script>
-  function toggleTheme() {
-    const html = document.documentElement;
-    html.classList.toggle('dark');
-
-    const iconMobile = document.getElementById("theme-icon");
-    const iconDesktop = document.getElementById("theme-icon-desktop");
-
-    const theme = html.classList.contains("dark") ? "🌙" : "☀️";
-
-    if (iconMobile) iconMobile.textContent = theme;
-    if (iconDesktop) iconDesktop.textContent = theme;
-  }
-
-  function toggleMenu() {
-    alert("Tap to open category menu (mobile dropdown coming soon)");
-  }
   </script>
 </body>
   </html>
