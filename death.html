@@ -28,20 +28,56 @@
     }
   </style>
 </head><body class="bg-black text-white dark:bg-white dark:text-black">
-  <!-- Navbar -->
-  <header class="flex items-center justify-between p-4 border-b border-gray-700 dark:border-gray-300">
-    <div class="text-2xl font-bold">Death Movie</div>
-    <div class="flex-grow px-4">
-      <input type="text" placeholder="Search movies..." class="w-full rounded-full px-4 py-1 text-black dark:text-white bg-white dark:bg-black border dark:border-gray-300" />
+
+
+<header class="flex flex-col md:flex-row md:items-center justify-between p-4 border-b border-gray-700 dark:border-gray-300 bg-black dark:bg-white">
+
+  <!-- Top Row: Left - Logo & Menu | Right - Icons -->
+  <div class="flex items-center justify-between w-full md:w-auto">
+    <!-- Left Side: Menu + Logo -->
+    <div class="flex items-center gap-3">
+      <button onclick="toggleMenu()" class="text-white dark:text-black text-xl md:hidden">
+        <i class="fas fa-ellipsis-v"></i>
+      </button>
+      <div class="text-2xl font-bold text-white dark:text-black">Death Movie</div>
     </div>
-    <div class="flex gap-3 items-center">
-      <button onclick="toggleTheme()">
+
+    <!-- Right Side: Theme + Telegram (visible on mobile too) -->
+    <div class="flex items-center gap-4 md:hidden">
+      <button onclick="toggleTheme()" class="text-white dark:text-black text-xl">
         <span id="theme-icon">🌙</span>
       </button>
-      <a href="https://t.me/deathchatting_world" target="_blank" class="flex items-center gap-1 text-blue-400 hover:underline">
-  <i class="fab fa-telegram-plane"></i></a>
+      <a href="https://t.me/deathchatting_world" target="_blank" class="text-blue-400 text-xl">
+        <i class="fab fa-telegram-plane"></i>
+      </a>
     </div>
-  </header>  
+  </div>
+
+  <!-- Middle Row: Navigation + Search -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between w-full mt-4 md:mt-0">
+
+    <!-- Navigation Menu -->
+    <nav class="flex flex-wrap items-center gap-4 text-white dark:text-black text-sm font-semibold justify-center md:justify-start">
+      <a href="#" class="hover:text-red-500 transition">Home</a>
+      <a href="#" class="hover:text-red-500 transition">Hollywood</a>
+      <a href="#" class="hover:text-red-500 transition">Bollywood</a>
+      <a href="#" class="hover:text-red-500 transition">K-Pop</a>
+    </nav>
+
+    <!-- Search + Icons (on desktop only) -->
+    <div class="hidden md:flex items-center gap-4 ml-auto">
+      <input type="text" placeholder="Search..." class="rounded-full px-4 py-1 text-black dark:text-white bg-white dark:bg-black border dark:border-gray-300" />
+      <button onclick="toggleTheme()" class="text-white dark:text-black text-xl">
+        <span id="theme-icon-desktop">🌙</span>
+      </button>
+      <a href="https://t.me/deathchatting_world" target="_blank" class="text-blue-400 text-xl">
+        <i class="fab fa-telegram-plane"></i>
+      </a>
+    </div>
+  </div>
+</header>
+  
+  
   <!-- Hero Slider Section -->
 <!-- Premium Tagline Section -->
 <section id="premiumTagline" class="h-[25vh] w-full bg-black flex items-center justify-center">
@@ -150,6 +186,18 @@
       document.getElementById('movieModal').classList.add('hidden');
     }
 
+    
+
+// Optional: close dropdown if clicked outside
+document.addEventListener('click', function (e) {
+  const dropdown = document.getElementById('menuDropdown');
+  const button = e.target.closest('button');
+  if (!dropdown.contains(e.target) && (!button || button.textContent !== 'Menu')) {
+    dropdown.classList.add('hidden');
+    dropdown.classList.remove('block');
+  }
+});
+
     gsap.from('section', {opacity: 0, y: 50, duration: 1, stagger: 0.2});
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -202,6 +250,24 @@
     duration: 1.2,
     ease: "power3.out"
   });
+  </script>
+  <script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.classList.toggle('dark');
+
+    const iconMobile = document.getElementById("theme-icon");
+    const iconDesktop = document.getElementById("theme-icon-desktop");
+
+    const theme = html.classList.contains("dark") ? "🌙" : "☀️";
+
+    if (iconMobile) iconMobile.textContent = theme;
+    if (iconDesktop) iconDesktop.textContent = theme;
+  }
+
+  function toggleMenu() {
+    alert("Tap to open category menu (mobile dropdown coming soon)");
+  }
   </script>
 </body>
   </html>
