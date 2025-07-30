@@ -29,13 +29,15 @@
   </style>
 </head><body class="bg-black text-white dark:bg-white dark:text-black">
 <!-- Header -->
-<header class="w-full bg-black dark:bg-white border-b border-gray-700 dark:border-gray-300 p-4 relative z-50">
+
+
+  <header class="w-full bg-black dark:bg-white border-b border-gray-700 dark:border-gray-300 p-4 relative z-50">
   <div class="flex items-center justify-between">
 
-    <!-- Left: Hamburger + Logo -->
+    <!-- Left: Logo -->
     <div class="flex items-center gap-4">
-      <!-- Hamburger -->
-      <div id="menu-btn" class="flex flex-col justify-center items-start space-y-1 cursor-pointer">
+      <!-- Hamburger: Hidden on md and above -->
+      <div id="menu-btn" class="flex flex-col justify-center items-start space-y-1 cursor-pointer md:hidden">
         <div class="w-5 h-0.5 bg-white dark:bg-black"></div>
         <div class="w-5 h-0.5 bg-white dark:bg-black"></div>
         <div class="w-5 h-0.5 bg-white dark:bg-black"></div>
@@ -43,6 +45,16 @@
 
       <!-- Logo -->
       <div class="text-lg font-bold text-white dark:text-black">Death Movie</div>
+
+      <!-- Desktop Navigation: Only visible on md and above -->
+      <nav class="hidden md:flex gap-6 text-white dark:text-black text-sm font-semibold ml-6">
+        <a href="#" class="hover:text-red-500 transition">Hollywood</a>
+        <a href="#" class="hover:text-red-500 transition">Bollywood</a>
+        <a href="#" class="hover:text-red-500 transition">Web Series</a>
+        <a href="#" class="hover:text-red-500 transition">Dual Audio</a>
+        <a href="#" class="hover:text-red-500 transition">K-Drama</a>
+        <a href="#" class="hover:text-red-500 transition">Horror</a>
+      </nav>
     </div>
 
     <!-- Right: Theme + Telegram -->
@@ -55,6 +67,8 @@
       </a>
     </div>
   </div>
+  </header>
+
 
 
 
