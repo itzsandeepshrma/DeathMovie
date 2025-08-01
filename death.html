@@ -2,6 +2,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Death Movie</title>
+  <link rel="shortcut icon" href="img/death.png" type="image/png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -49,27 +50,30 @@
       color: #ff0000;
       transform: scale(1.2);
     }
+    .movie-slide {
+    height: 160px; 
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+  #sliderWrapper:hover 
+    .movie-slide {
+    pointer-events: auto;
+  }
   </style>
-</head><body class="bg-black text-white dark:bg-white dark:text-black">
-<!-- Header -->
-
-
+</head>
+  <body class="bg-black text-white dark:bg-white dark:text-black">
   <header class="w-full bg-black dark:bg-white border-b border-gray-700 dark:border-gray-300 p-4 relative z-50">
   <div class="flex items-center justify-between">
-
-    <!-- Left: Logo -->
     <div class="flex items-center gap-4">
-      <!-- Hamburger: Hidden on md and above -->
       <div id="menu-btn" class="flex flex-col justify-center items-start space-y-1 cursor-pointer md:hidden focus:outline-none focus:ring-0">
         <div class="w-5 h-0.5 bg-white dark:bg-black"></div>
         <div class="w-5 h-0.5 bg-white dark:bg-black"></div>
         <div class="w-5 h-0.5 bg-white dark:bg-black"></div>
       </div>
-
-      <!-- Logo -->
-      <div class="text-lg font-bold text-white dark:text-black">Death Movie</div>
-
-      <!-- Desktop Navigation: Only visible on md and above -->
+      
+<img src="img/death.png" alt="Death Movie Logo" class="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 w-auto object-contain" />
       <nav class="hidden md:flex gap-6 text-white dark:text-black text-sm font-semibold ml-6">
         <a href="#" class="hover:text-red-500 transition">Hollywood</a>
         <a href="#" class="hover:text-red-500 transition">Bollywood</a>
@@ -80,7 +84,6 @@
       </nav>
     </div>
 
-<!-- Right: Theme + Telegram -->
 <div class="flex items-center gap-4">
   <button onclick="toggleTheme()" aria-label="Toggle Theme">
     <i id="theme-icon" class="fas fa-moon text-xl transition duration-300"></i>
@@ -90,17 +93,13 @@
 </div>
   </header>
 
-
-
-
-  <!-- Mobile Navigation Menu -->
-<div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 dark:bg-white dark:bg-opacity-90 hidden flex-col items-start justify-start z-40 px-6 pt-24">
-  <!-- Close Button -->
+<div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-black dark:bg-white hidden flex-col items-start justify-start z-40 px-6 pt-24">
   <div class="absolute top-6 left-6 text-white dark:text-black text-3xl cursor-pointer" id="closeMenuBtn">
   &times;
   </div>
 
   <nav class="flex flex-col space-y-6 text-2xl font-extrabold text-white dark:text-black text-left pl-4">
+    <a href="#" class="hover:text-red-500 transition">Home</a>
   <a href="#" class="hover:text-red-500 transition">Hollywood</a>
   <a href="#" class="hover:text-red-500 transition">Bollywood</a>
   <a href="#" class="hover:text-red-500 transition">Web Series</a>
@@ -110,84 +109,93 @@
   </nav>
 </div>
 
-  
-    
-  
-  
-  <!-- Hero Slider Section -->
-<!-- Premium Tagline Section -->
-<section id="premiumTagline" class="h-[90vh] md:h-[70vh] w-full bg-dark white:bg-black flex items-center justify-center">
-  <p class="text-red-600 dark:text-red-500 text-xl md:text-5xl font-extrabold tracking-wider text-center drop-shadow-[0_0_10px_rgba(255,0,0,0.5)]">
+<section id="premiumTagline" class="w-full bg-dark dark:bg-white flex flex-col items-center justify-center py-10 px-4 space-y-6 transition duration-300">
+<div class="relative w-full max-w-xl mx-auto shadow-lg">
+  <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+    viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round"
+      d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z" />
+  </svg>
+  <input
+    type="text"
+    placeholder="Search high-quality movies..."
+    class="w-full pl-12 pr-4 py-3 rounded-full 
+           bg-white text-black 
+           dark:bg-zinc-800 dark:text-white 
+           placeholder-gray-500 dark:placeholder-gray-400 
+           border border-gray-300 dark:border-zinc-700 
+           focus:outline-none focus:ring-2 focus:ring-red-600 
+           transition duration-300" />
+</div>
+  <p class="text-red-500 text-sm sm:text-base md:text-lg font-semibold tracking-wide text-center whitespace-nowrap">
     Your premium destination for high quality Movies
   </p>
 </section>
-  
 
-  
+<section id="movieSlider" class="w-full overflow-hidden py-10">
+  <h2 class="text-xl md:text-2xl font-bold text-left mb-6 px-6">Movies</h2>
+  <div id="sliderWrapper" class="flex gap-4 px-6 w-max">
+    <img src="https://image.tmdb.org/t/p/w300/3pTwMUEavTzVOh6yLN0aEwR7uSy.jpg" alt="Poster" class="movie-slide">
+    <img src="https://image.tmdb.org/t/p/w300/or06FN3Dka5tukK1e9sl16pB3iy.jpg" alt="Poster" class="movie-slide">
+    <img src="https://image.tmdb.org/t/p/w300/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg" alt="Poster" class="movie-slide">
+    <img src="https://image.tmdb.org/t/p/w300/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg" alt="Poster" class="movie-slide">
+    <img src="https://image.tmdb.org/t/p/w300/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" alt="Poster" class="movie-slide">
+    <img src="https://image.tmdb.org/t/p/w300/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg" alt="Poster" class="movie-slide">
+    <img src="https://image.tmdb.org/t/p/w300/4UjiPdFKJGJYdxwRs2Rzg7EmWqr.jpg" alt="Poster" class="movie-slide">
+    <img src="https://image.tmdb.org/t/p/w300/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" alt="Poster" class="movie-slide">
+  </div>
+</section>
 
-  
-  
-  <!-- Latest Releases -->  <section class="px-4 py-8">
-    <h2 class="text-3xl font-bold mb-4">Latest Releases</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-      <!-- Movie Card -->
+<div class="flex justify-center px-4 pb-6">
+  <a href="https://t.me/deathkingworld" target="_blank"
+    class="whitespace-nowrap inline-flex items-center px-4 py-2 md:px-6 md:py-3 rounded-full text-white bg-gradient-to-r from-purple-600 to-pink-500 shadow-md hover:opacity-90 transition text-sm md:text-base">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 md:w-5 md:h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4 8-9 8-1.5 0-2.9-.3-4.1-.9L3 21l1.4-3.9C3.5 15.8 3 13.9 3 12c0-4.418 4-8 9-8s9 3.6 9 8z" />
+    </svg>
+    <span class="font-medium">Domains & updates: Telegram channel's</span>
+  </a>
+</div>
+
+<section class="px-4 py-8">
+  <h2 class="text-xl md:text-2xl font-bold mb-4">Latest Releases</h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
       <div class="cursor-pointer group relative" onclick="showDetails('John Wick 4','Action, Thriller','2h 49min','7.9')">
         <img src="https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" alt="John Wick 4" class="rounded-lg movie-poster">
         <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">John Wick 4</div>
       </div>
-      <!-- Add more movie cards here -->
 
-      <!-- John Wick 4 already added above -->
-
-<!-- Avengers: Endgame -->
 <div class="cursor-pointer group relative" onclick="showDetails('Avengers: Endgame','Action, Sci-Fi','3h 1min','8.4')">
   <img src="https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg" alt="Avengers: Endgame" class="rounded-lg movie-poster">
   <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Avengers: Endgame</div>
 </div>
-
-<!-- Jujutsu Kaisen 0 -->
 <div class="cursor-pointer group relative" onclick="showDetails('Jujutsu Kaisen 0','Animation, Action, Fantasy','1h 45min','7.9')">
   <img src="https://image.tmdb.org/t/p/w500/3pTwMUEavTzVOh6yLN0aEwR7uSy.jpg" alt="Jujutsu Kaisen 0" class="rounded-lg movie-poster">
   <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Jujutsu Kaisen 0</div>
 </div>
-
-<!-- Interstellar -->
 <div class="cursor-pointer group relative" onclick="showDetails('Interstellar','Sci-Fi, Adventure','2h 49min','8.6')">
   <img src="https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg" alt="Interstellar" class="rounded-lg movie-poster">
   <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Interstellar</div>
 </div>
-
-<!-- Demon Slayer: Mugen Train -->
 <div class="cursor-pointer group relative" onclick="showDetails('Demon Slayer: Mugen Train','Animation, Action, Fantasy','1h 57min','8.2')">
   <img src="https://image.tmdb.org/t/p/w500/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg" alt="Demon Slayer: Mugen Train" class="rounded-lg movie-poster">
   <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Mugen Train</div>
 </div>
-
-<!-- Spider-Man: No Way Home -->
 <div class="cursor-pointer group relative" onclick="showDetails('Spider-Man: No Way Home','Action, Sci-Fi, Adventure','2h 28min','8.2')">
   <img src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg" alt="No Way Home" class="rounded-lg movie-poster">
   <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">No Way Home</div>
 </div>
-
-<!-- Attack on Titan Final Season -->
 <div class="cursor-pointer group relative" onclick="showDetails('Attack on Titan Final Season','Animation, Action, Drama','24 Episodes','9.0')">
   <img src="https://image.tmdb.org/t/p/w500/4UjiPdFKJGJYdxwRs2Rzg7EmWqr.jpg" alt="AOT Final Season" class="rounded-lg movie-poster">
   <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">AOT Final Season</div>
 </div>
-
-<!-- Inception -->
 <div class="cursor-pointer group relative" onclick="showDetails('Inception','Action, Sci-Fi, Thriller','2h 28min','8.8')">
   <img src="https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg" alt="Inception" class="rounded-lg movie-poster">
   <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 rounded text-sm">Inception</div>
 </div>
-
-
-
-
-
-      
     </div>
-  </section>  <!-- Movie Details Modal -->  <div id="movieModal" class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center z-50">
+  </section>  
+    <div id="movieModal" class="fixed inset-0 bg-black bg-opacity-70 hidden justify-center items-center z-50">
     <div class="bg-white dark:bg-black text-black dark:text-white p-6 rounded-lg max-w-md w-full">
       <h3 id="modalTitle" class="text-2xl font-bold mb-2">Movie Title</h3>
       <p><strong>Genre:</strong> <span id="modalGenre"></span></p>
@@ -213,7 +221,6 @@
     </div>
   </div>
   </footer>
-
   <script>
     
   function toggleTheme() {
@@ -230,8 +237,6 @@
     icon.classList.add('fa-sun');
   }
 }
-  
-
     function showDetails(title, genre, duration, rating) {
       document.getElementById('movieModal').classList.remove('hidden');
       document.getElementById('modalTitle').textContent = title;
@@ -239,17 +244,13 @@
       document.getElementById('modalDuration').textContent = duration;
       document.getElementById('modalRating').textContent = rating;
     }
-
     function closeModal() {
       document.getElementById('movieModal').classList.add('hidden');
     }
-
-  
     gsap.from('section', {opacity: 0, y: 50, duration: 1, stagger: 0.2});
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
-  // Dynamic Hero Section Data
   const heroMovies = [
     {
       title: "Now Streaming: Avengers: Endgame",
@@ -267,9 +268,7 @@
       bg: "https://image.tmdb.org/t/p/original/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg"
     }
   ];
-
   let currentHeroIndex = 0;
-
   function updateHeroSection() {
     const movie = heroMovies[currentHeroIndex];
     const section = document.getElementById("heroSection");
@@ -284,26 +283,22 @@
       gsap.fromTo(title, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
       gsap.fromTo(desc, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
     }});
-
     currentHeroIndex = (currentHeroIndex + 1) % heroMovies.length;
   }
-
-  setInterval(updateHeroSection, 5000); // Change every 5 seconds
-        </script>
+  setInterval(updateHeroSection, 5000);
+  </script>
   <script>
   const menuBtn = document.getElementById("menu-btn");
   const mobileMenu = document.getElementById("mobileMenu");
   const closeMenuBtn = document.getElementById("closeMenuBtn");
   const mobileLinks = mobileMenu.querySelectorAll("a");
   let menuOpen = false;
-
   function openMenu() {
     mobileMenu.classList.remove("hidden");
     document.body.classList.add("no-scroll");
     gsap.fromTo("#mobileMenu nav a", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 });
     menuOpen = true;
   }
-
   function closeMenu() {
     gsap.to("#mobileMenu nav a", {
       opacity: 0, y: -20, duration: 0.3, stagger: 0.05, ease: "power2.in", onComplete: () => {
@@ -313,23 +308,23 @@
       }
     });
   }
-
   menuBtn.addEventListener("click", openMenu);
-  closeMenuBtn.addEventListener("click", closeMenu);
-
-  // Close on link click inside mobile menu
+closeMenuBtn.addEventListener("click", closeMenu);
   mobileLinks.forEach(link => {
     link.addEventListener("click", () => {
       closeMenu();
     });
   });
-
-  // Close on Escape
+document.addEventListener('click', (e) => {
+  const isClickInsideMenu = mobileMenu.contains(e.target);
+  const isMenuButton = menuBtn.contains(e.target);
+  if (menuOpen && !isClickInsideMenu && !isMenuButton) {
+    closeMenu();
+  }
+});
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && menuOpen) closeMenu();
   });
-
-  // Highlight active link (for desktop nav)
   const navLinks = document.querySelectorAll("header nav a");
   navLinks.forEach(link => {
     link.addEventListener("click", () => {
@@ -339,8 +334,6 @@
   });
 </script>
   <script>
-
-  // Active link highlight logic
   const navLinks = document.querySelectorAll("header nav a");
   navLinks.forEach(link => {
     link.addEventListener("click", () => {
@@ -360,7 +353,31 @@
       start: "top 80%",
     }
   });
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  const wrapper = document.getElementById('sliderWrapper');
+  const slides = gsap.utils.toArray('.movie-slide');
+  const totalWidth = slides.reduce((sum, slide) => sum + slide.offsetWidth + 16, 0); // +gap
+  gsap.set(wrapper, { x: 0 });
+  const scrollAnim = gsap.to(wrapper, {
+    x: `-=${totalWidth}`,
+    duration: 40,
+    ease: "linear",
+    repeat: -1,
+    modifiers: {
+      x: gsap.utils.unitize(x => parseFloat(x) % totalWidth)
+    }
+  });
+  wrapper.addEventListener("mouseenter", () => scrollAnim.pause());
+  wrapper.addEventListener("mouseleave", () => scrollAnim.play());
+  slides.forEach(slide => {
+    slide.addEventListener("mouseenter", () => {
+      gsap.to(slide, { scale: 1.1, duration: 0.3, ease: "power2.out" });
+    });
+    slide.addEventListener("mouseleave", () => {
+      gsap.to(slide, { scale: 1, duration: 0.3, ease: "power2.inOut" });
+    });
+  });
+</script>
 </body>
-  </html>
-  
+      </html>
